@@ -17,28 +17,75 @@ public class WebTest {
         String url = "https://www.saucedemo.com/";
 
         String expectedResult = "Products";
+        String endExpectedResult = "Thank you for your order!";
 
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
 
         driver.get(url);
-        WebElement userName = driver.findElement(By.id("user-name"));
+
+        //Precondition
+        WebElement userName = driver.findElement(
+                By.id("user-name")
+        );
         userName.sendKeys("standard_user");
-        sleep(2000);
-
-        WebElement passWord = driver.findElement(By.xpath("//div[@class = 'form_group']/input[@type='password']"));
-        sleep(2000);
+        WebElement passWord = driver.findElement(
+                By.id("password")
+        );
         passWord.sendKeys("secret_sauce");
-
-        WebElement clickLog = driver.findElement(By.xpath("//input[@class ='submit-button btn_action']"));
+        WebElement clickLog = driver.findElement(
+                By.id("login-button")
+        );
         clickLog.click();
-        sleep(2000);
-
-        WebElement products = driver.findElement(By.xpath("//span[@class='title']"));
+        WebElement products = driver.findElement(
+               By.xpath("//span[@class='title']")
+        );
 
         String actualResult = products.getText();
 
         Assert.assertEquals(actualResult, expectedResult);
+
+        // Case 01: "Verification of a successful purchase"
+        WebElement firstInventory = driver.findElement(
+                By.cssSelector(".inventory_list .inventory_item:first-child .btn")
+        );
+        firstInventory.click();
+        WebElement shoppingLink = driver.findElement(
+                By.cssSelector(".shopping_cart_link")
+        );
+        shoppingLink.click();
+        WebElement checkoutButton = driver.findElement(
+                By.cssSelector(".checkout_button")
+        );
+        checkoutButton.click();
+        WebElement firstName = driver.findElement(
+                By.cssSelector(".form_group [name=\"firstName\"]")
+        );
+        firstName.sendKeys("test");
+        WebElement lastName = driver.findElement(
+                By.cssSelector(".form_group [name=\"lastName\"]")
+        );
+        lastName.sendKeys("test");
+        WebElement postalCode = driver.findElement(
+                By.cssSelector(".form_group [name=\"postalCode\"]")
+        );
+        postalCode.sendKeys("test");
+        WebElement btnContinue = driver.findElement(
+                By.cssSelector(".btn[name=\"continue\"]")
+        );
+        btnContinue.click();
+        WebElement btnFinish = driver.findElement(
+                By.cssSelector(".btn[name=\"finish\"]")
+        );
+        btnFinish.click();
+        WebElement completeHeader = driver.findElement(
+                By.cssSelector(".complete-header")
+        );
+
+        String endActualResult = completeHeader.getText();
+
+        Assert.assertEquals(endActualResult, endExpectedResult);
+
         driver.quit();
     }
 }
