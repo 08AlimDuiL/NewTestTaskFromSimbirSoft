@@ -5,16 +5,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static java.lang.Thread.sleep;
-
 public class WebTest {
-    @Test
 
-    public void testMyFirstBuy() throws InterruptedException {
+    private static final String URL = "https://www.saucedemo.com/";
+    @Test(priority=1)
+    // Case 01: "Verification of a successful purchase"
+    public void testSuccessfulPurchase() {
 
         String chromeDriver = "webdriver.chrome.driver";
         String driverPath = "f:/QA/Installer/ChromeDriver111/chromedriver.exe";
-        String url = "https://www.saucedemo.com/";
 
         String expectedResult = "Products";
         String endExpectedResult = "Thank you for your order!";
@@ -22,7 +21,7 @@ public class WebTest {
         System.setProperty(chromeDriver, driverPath);
         WebDriver driver = new ChromeDriver();
 
-        driver.get(url);
+        driver.get(URL);
 
         //Precondition
         WebElement userName = driver.findElement(
@@ -45,7 +44,6 @@ public class WebTest {
 
         Assert.assertEquals(actualResult, expectedResult);
 
-        // Case 01: "Verification of a successful purchase"
         WebElement firstInventory = driver.findElement(
                 By.cssSelector(".inventory_list .inventory_item:first-child .btn")
         );
@@ -85,6 +83,43 @@ public class WebTest {
         String endActualResult = completeHeader.getText();
 
         Assert.assertEquals(endActualResult, endExpectedResult);
+
+        driver.quit();
+    }
+    @Test
+    //Case 2: "Checking an error message when trying to enter a login for a non-existent user"
+    public void testErrorMessage() {
+
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "f:/QA/Installer/ChromeDriver111/chromedriver.exe";
+
+        String expectedResult = "Epic sadface: Username and password do not match any user in this service";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(URL);
+
+        WebElement userName = driver.findElement(
+                By.xpath("//div[@class = 'form_group']/input[@name='user-name']")
+        );
+        userName.sendKeys("test");
+        WebElement passWord = driver.findElement(
+                By.xpath("//div[@class = 'form_group']/input[@name='password']")
+        );
+        passWord.sendKeys("test");
+        WebElement clickLog = driver.findElement(
+                By.xpath("//input[@class ='submit-button btn_action']")
+        );
+        clickLog.click();
+
+        WebElement headerError= driver.findElement(
+                By.xpath("//h3")
+        );
+
+        String actualResult =headerError.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
 
         driver.quit();
     }
