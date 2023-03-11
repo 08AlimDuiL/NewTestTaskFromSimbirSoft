@@ -5,6 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class _0MainPage {
+    private static final String notValidData = "test";
+    private static final String validUserName = "standard_user";
+    private static final String validPassword = "secret_sauce";
     private WebDriver driver;
 
     public _0MainPage(WebDriver existingDriver) {
@@ -17,10 +20,18 @@ public class _0MainPage {
         return driver;
     }
 
-    private final By USER_NAME = By.id("user-name");
-    private final By PASSWORD = By.id("password");
-    private final By CLICK_LOG = By.id("login-button");
-    private final By HEADER_ERROR = By.xpath("//h3");
+    private final By USER_NAME = By.xpath(
+            "//div[@class = 'form_group']/input[@name='user-name']"
+    );
+    private final By PASSWORD = By.xpath(
+            "//div[@class = 'form_group']/input[@type='password']"
+    );
+    private final By CLICK_LOG = By.xpath(
+            "//input[@class ='submit-button btn_action']"
+    );
+    private final By HEADER_ERROR = By.xpath(
+            "//div[@class = 'error-message-container error']"
+    );
 
     public WebElement getUserName() {
 
@@ -42,6 +53,35 @@ public class _0MainPage {
         return getDriver().findElement(HEADER_ERROR);
     }
 
+    public void sendUserName() {
+
+        getUserName().sendKeys(validUserName);
+    }
+
+    public void sendNotValidUserName() {
+
+        getUserName().sendKeys(notValidData);
+    }
+
+    public void sendPassword() {
+
+        getPassword().sendKeys(validPassword);
+    }
+
+    public void sendNotValidPassword() {
+
+        getPassword().sendKeys(notValidData);
+    }
+
+    public void clickLog() {
+
+        getClickLog().click();
+    }
+
+    public String getTextError() {
+
+        return getError().getText();
+    }
 }
 
 

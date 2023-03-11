@@ -15,8 +15,7 @@ public class _1InventoryPage {
         return driver;
     }
 
-
-    private final By TITLE = By.xpath("//span[@class='title']");
+    private final By TITLE = By.cssSelector(".title");
     private final By FIRST_GOOD = By.cssSelector(".inventory_list .inventory_item:first-child .btn");
     private final By SHOPPING_CONTAINER = By.cssSelector(".shopping_cart_link");
 
@@ -32,6 +31,21 @@ public class _1InventoryPage {
     public WebElement getShoppingContainer() {
 
         return getDriver().findElement(SHOPPING_CONTAINER);
+    }
+
+    public String getTextTitle() {
+
+       return getTitle().getText();
+    }
+
+    public void clickBtnOfFirstGood() {
+
+        getFirstGood().click();
+    }
+
+    public void clickShoppingLink() {
+
+        getShoppingContainer().click();
     }
 
 }

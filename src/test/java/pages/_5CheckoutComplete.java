@@ -15,10 +15,13 @@ public class _5CheckoutComplete {
         return driver;
     }
 
-    private final By COMPLETE_HEADER = By.cssSelector(".complete-header");
+    private final By COMPLETE_HEADER = By.className("complete-header");
     public WebElement getCompleteHeader() {
 
         return getDriver().findElement(COMPLETE_HEADER);
     }
+    public String getTextCompleteHeader() {
 
+        return getCompleteHeader().getText();
+    }
 }

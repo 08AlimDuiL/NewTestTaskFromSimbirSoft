@@ -17,10 +17,15 @@ public class _4CheckoutStepTwo {
         return driver;
     }
 
-    private final By BTNFINISH = By.cssSelector(".btn[name=\"finish\"]");
+    private final By BTN_FINISH = By.id("finish");
 
     public WebElement getBtnFinish() {
 
-        return getDriver().findElement(BTNFINISH);
+        return getDriver().findElement(BTN_FINISH);
+    }
+
+    public void clickBtnFinish() {
+
+        getBtnFinish().click();
     }
 }

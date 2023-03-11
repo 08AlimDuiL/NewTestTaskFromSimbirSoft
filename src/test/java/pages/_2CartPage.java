@@ -17,10 +17,16 @@ public class _2CartPage {
         return driver;
     }
 
-    private final By CHECKOUT_BTN = By.cssSelector(".checkout_button");
+    private final By CHECKOUT_BTN = By.id("checkout");
 
     public WebElement getCheckoutBtn() {
 
         return getDriver().findElement(CHECKOUT_BTN);
     }
+
+    public void clickCheckoutBtn() {
+
+        getCheckoutBtn().click();
+    }
+
 }
