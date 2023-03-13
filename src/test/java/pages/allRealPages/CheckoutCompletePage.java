@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
-public class CheckoutComplete extends BasePage {
+public class CheckoutCompletePage extends BasePage {
 
-    public CheckoutComplete(WebDriver driver) {
+    public CheckoutCompletePage(WebDriver driver) {
 
         super(driver);
     }

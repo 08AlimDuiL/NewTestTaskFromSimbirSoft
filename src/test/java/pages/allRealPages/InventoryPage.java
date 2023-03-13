@@ -3,9 +3,9 @@ package pages.allRealPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import pages.MainPageHeader;
 
-public class InventoryPage extends BasePage {
+public class InventoryPage extends MainPageHeader {
     public InventoryPage(WebDriver driver) {
 
         super(driver);
@@ -34,13 +34,15 @@ public class InventoryPage extends BasePage {
         return getTitle().getText();
     }
 
-    public void clickBtnOfFirstGood() {
+    public InventoryPage clickBtnOfFirstGood() {
 
         getFirstGood().click();
+        return new InventoryPage(getDriver());
     }
 
-    public void clickShoppingLink() {
+    public InventoryPage clickShoppingLink() {
 
         getShoppingContainer().click();
+        return new InventoryPage(getDriver());
     }
 }

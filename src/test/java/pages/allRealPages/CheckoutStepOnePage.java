@@ -5,10 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
-public class CheckoutStepOne extends BasePage {
+public class CheckoutStepOnePage extends BasePage {
     private static final String checkoutInfo = "test";
 
-    public CheckoutStepOne(WebDriver driver) {
+    public CheckoutStepOnePage(WebDriver driver) {
 
         super(driver);
     }
@@ -38,23 +38,27 @@ public class CheckoutStepOne extends BasePage {
         return getDriver().findElement(BTN_CONTINUE);
     }
 
-    public void sendFirstName() {
-
+    public CheckoutStepOnePage fillFirstName() {
         getFirstName().sendKeys(checkoutInfo);
+
+        return this;
     }
 
-    public void sendFLastName() {
-
+    public CheckoutStepOnePage fillFLastName() {
         getLastName().sendKeys(checkoutInfo);
+
+        return this;
     }
 
-    public void sendPostalCode() {
-
+    public CheckoutStepOnePage fillPostalCode() {
         getPostalCode().sendKeys(checkoutInfo);
+
+        return this;
     }
 
-    public void clickBtnContinue() {
-
+    public CheckoutStepOnePage clickBtnContinue() {
         getBtnContinue().click();
+
+        return new CheckoutStepOnePage(getDriver());
     }
 }

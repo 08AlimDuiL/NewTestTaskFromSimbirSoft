@@ -3,9 +3,9 @@ package pages.allRealPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import pages.BasePage;
+import pages.MainPageHeader;
 
-public class MainPage extends BasePage {
+public class MainPage extends MainPageHeader {
     private static final String notValidData = "test";
     private static final String validUserName = "standard_user";
     private static final String validPassword = "secret_sauce";
@@ -15,18 +15,10 @@ public class MainPage extends BasePage {
         super(driver);
     }
 
-    private final By USER_NAME = By.xpath(
-            "//div[@class = 'form_group']/input[@name='user-name']"
-    );
-    private final By PASSWORD = By.xpath(
-            "//div[@class = 'form_group']/input[@type='password']"
-    );
-    private final By CLICK_LOG = By.xpath(
-            "//input[@class ='submit-button btn_action']"
-    );
-    private final By HEADER_ERROR = By.xpath(
-            "//div[@class = 'error-message-container error']"
-    );
+    private final By USER_NAME = By.xpath("//div[@class = 'form_group']/input[@name='user-name']");
+    private final By PASSWORD = By.xpath("//div[@class = 'form_group']/input[@type='password']");
+    private final By CLICK_LOG = By.xpath("//input[@class ='submit-button btn_action']");
+    private final By HEADER_ERROR = By.xpath("//div[@class = 'error-message-container error']");
 
     public WebElement getUserName() {
 
@@ -48,29 +40,34 @@ public class MainPage extends BasePage {
         return getDriver().findElement(HEADER_ERROR);
     }
 
-    public void sendUserName() {
-
+    public MainPage fillUserName() {
         getUserName().sendKeys(validUserName);
+
+        return this;
     }
 
-    public void sendNotValidUserName() {
-
+    public MainPage fillNotValidUserName() {
         getUserName().sendKeys(notValidData);
+
+        return this;
     }
 
-    public void sendPassword() {
-
+    public MainPage fillPassword() {
         getPassword().sendKeys(validPassword);
+
+        return this;
     }
 
-    public void sendNotValidPassword() {
-
+    public MainPage fillNotValidPassword() {
         getPassword().sendKeys(notValidData);
+
+        return this;
     }
 
-    public void clickLog() {
-
+    public MainPage clickLog() {
         getClickLog().click();
+
+        return new MainPage(getDriver());
     }
 
     public String getTextError() {

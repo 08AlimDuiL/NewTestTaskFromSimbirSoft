@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pages.BasePage;
 
-public class CheckoutStepTwo extends BasePage {
+public class CheckoutStepTwoPage extends BasePage {
 
-    public CheckoutStepTwo(WebDriver driver) {
+    public CheckoutStepTwoPage(WebDriver driver) {
 
         super(driver);
     }
@@ -19,8 +19,9 @@ public class CheckoutStepTwo extends BasePage {
         return getDriver().findElement(BTN_FINISH);
     }
 
-    public void clickBtnFinish() {
-
+    public  CheckoutStepTwoPage clickBtnFinish() {
         getBtnFinish().click();
+
+        return this;
     }
 }
