@@ -2,32 +2,30 @@ package tests;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages._0MainPage;
-import pages._1InventoryPage;
-import pages._2CartPage;
-import pages._3CheckoutStepOne;
-import pages._4CheckoutStepTwo;
-import pages._5CheckoutComplete;
+import pages.allRealPages.MainPage;
+import pages.allRealPages.InventoryPage;
+import pages.allRealPages.CartPage;
+import pages.allRealPages.CheckoutStepOne;
+import pages.allRealPages.CheckoutStepTwo;
+import pages.allRealPages.CheckoutComplete;
 import runner.BaseTest;
 
 public class E2ETests extends BaseTest {
-    private static final String BASE_URL = "https://www.saucedemo.com/";
-
-    @Test
+      @Test
     // Case 01: "Verification of a successful purchase"
     public void testSuccessfulPurchase() {
 
         final String expectedResult = "Products";
         final String endExpectedResult = "Thank you for your order!";
 
-        _0MainPage main = new _0MainPage(getDriver());
-        _1InventoryPage inventory = new _1InventoryPage(getDriver());
-        _2CartPage cart = new _2CartPage(getDriver());
-        _3CheckoutStepOne stepOne = new _3CheckoutStepOne(getDriver());
-        _4CheckoutStepTwo stepTwo = new _4CheckoutStepTwo(getDriver());
-        _5CheckoutComplete complete = new _5CheckoutComplete(getDriver());
+        MainPage main = new MainPage(getDriver());
+        InventoryPage inventory = new InventoryPage(getDriver());
+        CartPage cart = new CartPage(getDriver());
+        CheckoutStepOne stepOne = new CheckoutStepOne(getDriver());
+        CheckoutStepTwo stepTwo = new CheckoutStepTwo(getDriver());
+        CheckoutComplete complete = new CheckoutComplete(getDriver());
         //Precondition
-        getDriver().get(BASE_URL);
+        openBaseURL();
 
         main.sendUserName();
         main.sendPassword();

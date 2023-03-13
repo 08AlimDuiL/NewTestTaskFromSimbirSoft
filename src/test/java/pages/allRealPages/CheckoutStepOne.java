@@ -1,21 +1,16 @@
-package pages;
+package pages.allRealPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.BasePage;
 
-public class _3CheckoutStepOne {
+public class CheckoutStepOne extends BasePage {
     private static final String checkoutInfo = "test";
 
-    private WebDriver driver;
+    public CheckoutStepOne(WebDriver driver) {
 
-    public _3CheckoutStepOne(WebDriver existingDriver) {
-        this.driver = existingDriver;
-    }
-
-    protected WebDriver getDriver() {
-
-        return driver;
+        super(driver);
     }
 
     private final By FIRST_NAME = By.cssSelector(".form_group [name=\"firstName\"]");

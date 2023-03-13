@@ -1,23 +1,18 @@
-package pages;
+package pages.allRealPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.BasePage;
 
-public class _0MainPage {
+public class MainPage extends BasePage {
     private static final String notValidData = "test";
     private static final String validUserName = "standard_user";
     private static final String validPassword = "secret_sauce";
-    private WebDriver driver;
 
-    public _0MainPage(WebDriver existingDriver) {
+    public MainPage(WebDriver driver) {
 
-        this.driver = existingDriver;
-    }
-
-    protected WebDriver getDriver() {
-
-        return driver;
+        super(driver);
     }
 
     private final By USER_NAME = By.xpath(
@@ -80,7 +75,7 @@ public class _0MainPage {
 
     public String getTextError() {
 
-        return getError().getText();
+        return getText(getError());
     }
 }
 

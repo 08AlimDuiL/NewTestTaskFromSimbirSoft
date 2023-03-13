@@ -1,20 +1,15 @@
-package pages;
+package pages.allRealPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.BasePage;
 
-public class _4CheckoutStepTwo {
+public class CheckoutStepTwo extends BasePage {
 
-    private WebDriver driver;
+    public CheckoutStepTwo(WebDriver driver) {
 
-    public _4CheckoutStepTwo(WebDriver existingDriver) {
-        this.driver = existingDriver;
-    }
-
-    protected WebDriver getDriver() {
-
-        return driver;
+        super(driver);
     }
 
     private final By BTN_FINISH = By.id("finish");
